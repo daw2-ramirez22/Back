@@ -31,6 +31,8 @@ export const register = async (req, res) => {
     });
     const userSaved = await newUser.save();
     const token = await createAccessToken({ id: userSaved.id });
+    // 7 days, 24 hours, 60 minutes, 60 seconds, 1000 ms
+    const oneWeekInMs = 7 * 24 * 60 * 60 * 1000; 
     res.cookie("token", token, {
       maxAge: oneWeekInMs,
       httpOnly: true,
@@ -68,7 +70,8 @@ export const login = async (req, res) => {
 
     //Crear token para el usuario
     const token = await createAccessToken({ id: userFound._id });
-
+    // 7 days, 24 hours, 60 minutes, 60 seconds, 1000 ms
+    const oneWeekInMs = 7 * 24 * 60 * 60 * 1000; 
     res.cookie("token", token, {
         maxAge: oneWeekInMs,
         httpOnly: true,
