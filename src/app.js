@@ -15,7 +15,7 @@ import cors from "cors"
 const app = express()
 //soluciono problema de cors
 app.use((req, res, next) => {
-    const allowedOrigins = ["https://front-five-eosin.vercel.app/", "http://localhost:5173"];
+    const allowedOrigins = ["https://front-five-eosin.vercel.app", "http://localhost:5173"];
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
         res.header('Access-Control-Allow-Origin', origin);
