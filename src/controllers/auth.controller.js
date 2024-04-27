@@ -12,6 +12,7 @@ dotenv.config({ path: "./.env" });
 const TOKEN_SECRET = process.env.TOKEN || "aslkfd";
 //metodo para registrar usuarios
 export const register = async (req, res) => {
+console.log("entre al registro")
   const { email, password, username } = req.body;
   //instancio un objeto para crear usuarios, de esta forma puedo alterar un objeto y guardarlo despuies, ya que es asincrono lo hago con try y catch
   try {
@@ -93,9 +94,8 @@ export const login = async (req, res) => {
 };
 //metodo para deslogear usuarios
 export const logout = (req, res) => {
-  res.cookie("token", "", {
-    expires: new Date(0),
-  });
+  res.cookie("", token);
+
   return res.sendStatus(200);
 };
 
