@@ -93,11 +93,12 @@ export const login = async (req, res) => {
   }
 };
 //metodo para deslogear usuarios
-export const logout = (req, res) => {
-  res.cookie("token", "", {
-    expires: new Date(0),
-  });
-  return res.sendStatus(200);
+export const logout = async(req, res) => {
+  const token = await req.cookies.token;
+  // Eliminar la cookie del cliente
+  res.clearCookie("token");
+ 
+  res.status(200).json({ message: "Logout successful" });
 };
 
 export const profile = async (req, res) => {

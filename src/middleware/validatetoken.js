@@ -14,7 +14,6 @@ export const authRequired = (req, res, next) => {
     const { token } = req.cookies
     console.log(token)
     console.log(req.cookies)
-    //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mjk1ZjIyMGFhZjJiMDE3NWNiMWQ0NyIsImlhdCI6MTcxNDA3OTM1NywiZXhwIjoxNzE0MTY1NzU3fQ.W9o_yTyUB2d14avDHdE-I0kp2BUfCDYKL2XAdz46XgI"
     if(!token)
         //si hay un error u no me llega el token
         return res.status(401).json({message: "No token, authorization denied"})
