@@ -12,7 +12,7 @@ dotenv.config({ path: "./.env" });
 const TOKEN_SECRET = process.env.TOKEN || "aslkfd";
 //metodo para registrar usuarios
 export const register = async (req, res) => {
-console.log("entre al registro")
+  console.log("entre al registro");
   const { email, password, username } = req.body;
   //instancio un objeto para crear usuarios, de esta forma puedo alterar un objeto y guardarlo despuies, ya que es asincrono lo hago con try y catch
   try {
@@ -33,7 +33,7 @@ console.log("entre al registro")
     const userSaved = await newUser.save();
     const token = await createAccessToken({ id: userSaved.id });
     // 7 days, 24 hours, 60 minutes, 60 seconds, 1000 ms
-    const oneWeekInMs = 7 * 24 * 60 * 60 * 1000; 
+    const oneWeekInMs = 7 * 24 * 60 * 60 * 1000;
     res.cookie("token", token, {
       maxAge: oneWeekInMs,
       httpOnly: true,
@@ -72,14 +72,14 @@ export const login = async (req, res) => {
     //Crear token para el usuario
     const token = await createAccessToken({ id: userFound._id });
     // 7 days, 24 hours, 60 minutes, 60 seconds, 1000 ms
-    const oneWeekInMs = 7 * 24 * 60 * 60 * 1000; 
+    const oneWeekInMs = 7 * 24 * 60 * 60 * 1000;
     res.cookie("token", token, {
-        maxAge: oneWeekInMs,
-        httpOnly: true,
-        secure: true,
-        sameSite: "None",
-        path: "/",
-      });
+      maxAge: oneWeekInMs,
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+      path: "/",
+    });
     res.json({
       id: userFound.id,
       username: userFound.username,
@@ -94,11 +94,9 @@ export const login = async (req, res) => {
 };
 //metodo para deslogear usuarios
 export const logout = (req, res) => {
-  console.log(res.cookie("token"))
   res.cookie("token", "", {
     expires: new Date(0),
   });
-  console.log(res.cookie("token"))
   return res.sendStatus(200);
 };
 
