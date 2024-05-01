@@ -94,10 +94,21 @@ export const login = async (req, res) => {
 };
 //metodo para deslogear usuarios
 export const logout = (req, res) => {
-  res.cookie("token", "", {
-    expires: new Date(0),
-  });
-  return res.sendStatus(200);
+  console.log("entrelog");
+  if (req.cookies && req.cookies.token) {
+    console.log("entrelogout");
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+      path: "/",
+    });
+    console.log("Token cookie removed successfully.");
+    return res.sendStatus(200);
+  } else {
+    console.log("No token cookie found.");
+    return res.sendStatus(204);
+  }
 };
 
 export const profile = async (req, res) => {
