@@ -13,7 +13,16 @@ export const getTasks = async  (req, res) => {
          return res.status(500).json({message : 'Something went wrong'})       
     }
 }
-
+export const getAllTasks = async  (req, res) => {
+    try {
+        //peticion para que busque en todas las tareas
+        const tasks = await Task.find()
+        res.json(tasks)
+    } catch (error) {
+         //si no encontro nada y envio mensaje por consola
+         return res.status(500).json({message : 'Something went wrong'})       
+    }
+}
 
 export const createTask = async  (req, res) => {
     try {

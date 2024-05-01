@@ -86,6 +86,7 @@ export const login = async (req, res) => {
       email: userFound.email,
       createdAt: userFound.createdAt,
       updateAt: userFound.updatedAt,
+      role:userFound.role,
     });
   } catch (error) {
     //Si hay error que me lo muestre por consola

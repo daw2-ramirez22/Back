@@ -16,9 +16,5 @@ router.post ('/logout', logout)
 router.get ('/verify', verifyToken)
 
 router.get ('/profile', authRequired , profile)
-
-
-
-
 // para exportar los enrutadores de login y register
 export default router
